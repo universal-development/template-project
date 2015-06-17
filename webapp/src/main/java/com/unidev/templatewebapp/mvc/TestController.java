@@ -1,4 +1,4 @@
-package com.unidev.templatewebapp;
+package com.unidev.templatewebapp.mvc;
 
 import com.unidev.templatecore.Core;
 import org.springframework.beans.factory.annotation.Autowired;

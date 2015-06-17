@@ -1,5 +1,15 @@
-apply plugin: 'jetty'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.4.RELEASE")
+    }
+}
+
 apply plugin: 'war'
+apply plugin: 'spring-boot'
+
 
 
 def springVersion = "4.0.6.RELEASE"
@@ -7,6 +17,9 @@ def springSecurityVersion = "3.2.5.RELEASE"
 def unidevPlatformVersion = "1.2.0"
 
 dependencies {
+
+    compile("org.springframework.boot:spring-boot-starter-web")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
     compile project(":core")
 
@@ -25,21 +38,6 @@ dependencies {
 repositories {
     maven { url 'http://maven.restlet.org' }
 }
-
-jettyRun {
-    httpPort = 8080
-    contextPath = '/'
-    daemon = false
-}
-
-jettyRunWar {
-    httpPort = 8080
-    contextPath = '/'
-    daemon = false
-}
-
-[jettyRun, jettyRunWar, jettyStop]*.stopPort = 8081
-[jettyRun, jettyRunWar, jettyStop]*.stopKey = 'stopKey'
 
 import org.apache.tools.ant.filters.*
 war {
