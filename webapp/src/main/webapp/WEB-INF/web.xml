@@ -17,7 +17,8 @@
         <param-value>
             classpath:/webapp-beans.xml,
             classpath:/core-beans.xml,
-            classpath:/spring-security-conf.xml
+            classpath:/spring-security-conf.xml,
+            classpath*:applicationContext.xml
         </param-value>
     </context-param>
 
@@ -34,7 +35,8 @@
             <param-value>
                 classpath:/webapp-beans.xml,
                 classpath:/core-beans.xml,
-                classpath:/spring-security-conf.xml
+                classpath:/spring-security-conf.xml,
+                classpath*:applicationContext.xml
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
@@ -55,6 +57,28 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <!-- Vaadin servlet -->
+
+    <servlet>
+        <servlet-name>Vaadin Application Servlet</servlet-name>
+        <servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
+        <init-param>
+            <description>Vaadin UI</description>
+            <param-name>UI</param-name>
+            <param-value>com.unidev.templatewebapp.TestVaadinUI</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Vaadin Application Servlet</servlet-name>
+        <url-pattern>/vaadin/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Vaadin Application Servlet</servlet-name>
+        <url-pattern>/VAADIN/*</url-pattern>
+    </servlet-mapping>
 
     <!-- JMX -->
     <servlet>
