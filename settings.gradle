@@ -1,2 +1,2 @@
-include "webapp"
+include "app"
 include "core"
